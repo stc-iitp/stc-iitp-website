@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&family=Roboto:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-manrope: "Manrope", sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+
+  --color-bg: #08111F;
+  --color-surface: #0d1a2b;
+  --color-surface2: #152033;
+  --color-accent: #5aadff;
+
+  --animate-fade-in-up: fadeInUp 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-slide-in-right: slideInRight 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-title-reveal: titleReveal 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes titleReveal {
+    from { opacity: 0; transform: scale(0.85); filter: blur(12px); }
+    to   { opacity: 1; transform: scale(1);    filter: blur(0); }
+  }
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: hidden; max-width: 100%; }
+  body { background-color: #08111F; color: #ffffff; min-height: 100vh; }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
