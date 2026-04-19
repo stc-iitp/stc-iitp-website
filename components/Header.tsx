@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useState, useEffect, useRef, useMemo } from "react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -15,15 +16,49 @@ export default function Header() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  const path01Controls = useAnimation();
+  const path02Controls = useAnimation();
   const headerRef = useRef<HTMLElement>(null);
 
+  const path01Variants = useMemo(() => {
+    return {
+      open: { d: "M3.06061 2.99999L21.0606 21" },
+      closed: { d: "M0 9.5L24 9.5" },
+    };
+  }, []);
+
+  const path02Variants = useMemo(() => {
+    return {
+      open: { d: "M3.00006 21.0607L21 3.06064" },
+      moving: { d: "M0 14.5L24 14.5" },
+      closed: { d: "M0 14.5L15 14.5" },
+    };
+  }, []);
+
+  const onClick = async () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+
+    if (!isMobileMenuOpen) {
+      await path02Controls.start(path02Variants.moving);
+      path01Controls.start(path01Variants.open);
+      path02Controls.start(path02Variants.open);
+    } else {
+      path01Controls.start(path01Variants.closed);
+      await path02Controls.start(path02Variants.moving);
+      path02Controls.start(path02Variants.closed);
+    }
+  };
+
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = async (event: MouseEvent) => {
       if (
         headerRef.current &&
         !headerRef.current.contains(event.target as Node)
       ) {
         setIsMobileMenuOpen(false);
+        path01Controls.start(path01Variants.closed);
+        await path02Controls.start(path02Variants.moving);
+        path02Controls.start(path02Variants.closed);
         setIsMobileDropdownOpen(false);
       }
     };
@@ -37,7 +72,7 @@ export default function Header() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isMobileMenuOpen]);
+  }, [isMobileMenuOpen, path01Controls, path02Controls, path01Variants, path02Variants]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -176,42 +211,23 @@ export default function Header() {
           </nav>
 
           {/* Mobile Menu Button (Hamburger) */}
-          <button
-            className="block md:hidden text-gray-200 hover:text-white transition-colors p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-7 h-7"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-7 h-7"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            )}
+          <button onClick={onClick}>
+            <svg width="24" height="24" viewBox="0 0 24 24">
+              <motion.path
+                {...path01Variants.closed}
+                animate={path01Controls}
+                transition={{ duration: 0.2 }}
+                stroke="#FFFFFF"
+                strokeWidth={2}
+              />
+              <motion.path
+                {...path02Variants.closed}
+                animate={path02Controls}
+                transition={{ duration: 0.2 }}
+                stroke="#FFFFFF"
+                strokeWidth={2}
+              />
+            </svg>
           </button>
         </div>
       </div>
