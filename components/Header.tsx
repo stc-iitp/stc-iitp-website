@@ -215,7 +215,7 @@ export default function Header() {
           </nav>
 
           {/* Mobile Menu Button (Hamburger) */}
-          <button onClick={onClick}>
+          <button onClick={onClick} className="md:hidden" aria-label="Toggle menu">
             <svg width="24" height="24" viewBox="0 0 24 24">
               <motion.path
                 {...path01Variants.closed}
