@@ -51,3 +51,7 @@ next-env.d.ts
 # Build tools
 .turbo/
 .cache/
+# Local AI assistant config
+CLAUDE.md
+.claude/
+.gstack/

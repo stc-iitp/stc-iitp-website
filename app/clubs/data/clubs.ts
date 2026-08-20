@@ -465,4 +465,21 @@ Overall, Team Phoenix provides a platform for IIT Patna students to explore robo
     ],
     // tags: ["Robotics", "IoT", "Embedded"],
   },
+
+  // Trading and Investment Club
+  {
+    id: "tic",
+    name: "TIC",
+    department: "Trading and Investment Club",
+    description:
+      "The Trading and Investment Club at IIT Patna is rapidly growing and emphasizes consulting, investing, marketing, and product management. With a focus on winning competitions, creating opportunities, and skill-building, the club aims to establish a lasting finance legacy and become a top student-run club in India.",
+    logo: "/clubs/tic-logo.jpg",
+    socialLinks: {
+      instagram: "https://www.instagram.com/tic_iitpatna",
+      linkedin: "https://www.linkedin.com/company/ticiitp/",
+    },
+    // Photos pending — add paths under /clubs/photos/tic/ when supplied.
+    photos: [],
+    // tags: [],
+  },
 ];

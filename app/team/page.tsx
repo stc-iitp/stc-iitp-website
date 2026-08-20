@@ -209,10 +209,37 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
       },
     ],
   },
+  "2026-27": {
+    faculty: [
+      {
+        name: "Dr. Arpit Jain",
+        role: "PIC Technical Affairs",
+        image: "/team/2026-27/Dr._Arpit_Jain_-_PIC_Technical_Affairs.jpeg",
+        objectPosition: "top",
+      },
+    ],
+    students: [
+      {
+        name: "Abhitesh Shukla",
+        role: "General Secretary, Technical Affairs",
+        image: "/team/2026-27/Abhitesh_Shukla_-_General_Secretary_Technical_Affairs.webp",
+      },
+      {
+        name: "Shaswat Suman",
+        role: "Technical Secretary, Senior Year",
+        image: "/team/2026-27/Shaswat_Suman_-_Technical_Secretary_Senior_Year.webp",
+      },
+      {
+        name: "Ashutosh Kumar",
+        role: "Technical Secretary, Sophomore Year",
+        image: "/team/2026-27/Ashutosh_Kumar_-_Technical_Secretary_Sophomore_Year.webp",
+      },
+    ],
+  },
 };
 
 export default function TeamPage() {
-  const [selectedYear, setSelectedYear] = useState("2025-26");
+  const [selectedYear, setSelectedYear] = useState("2026-27");
   const [isOpen, setIsOpen] = useState(false);
   const years = Object.keys(ALL_TEAM_DATA).sort().reverse();
   const currentTeam = ALL_TEAM_DATA[selectedYear];
