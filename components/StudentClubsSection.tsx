@@ -53,14 +53,10 @@ export default function StudentClubsSection() {
 
   return (
     <section className="relative w-full flex flex-col justify-center px-4 md:px-16 py-14 md:py-16 overflow-hidden">
-      <div className="relative flex flex-col sm:flex-row items-center sm:items-end justify-between mb-8 gap-4">
+      <div className="relative mb-8">
         <h2 className="text-4xl md:text-6xl font-black uppercase text-white leading-none tracking-tight text-center sm:text-left font-['Barlow_Condensed',sans-serif]">
           STUDENT CLUBS
         </h2>
-
-        <a href="/clubs" className="inline-flex items-center gap-3 border border-slate-500 px-6 py-3 text-xs font-semibold tracking-[0.25em] text-slate-300 transition-all duration-200 hover:border-slate-300 hover:text-white active:scale-95 font-['Space_Mono',monospace]">
-          ENTER ARCHIVE →
-        </a>
       </div>
 
       <div className="relative w-full h-px bg-slate-700 mb-10" />
