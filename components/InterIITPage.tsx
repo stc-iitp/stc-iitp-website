@@ -280,7 +280,23 @@ export default function InterIITPage() {
               <br />
               TECH MEET
             </m.h1>
+            <div className="flex items-center gap-3 mt-4">
+              <span className="font-mono text-[#21ED58] text-sm">
+                EDITION
+              </span>
 
+              <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+              className="rounded-lg bg-white/10 px-3 py-2 text-white border border-white/20"
+              >
+              {years.map((year) => (
+              <option key={year} value={year} className="text-black">
+              {year}
+              </option>
+              ))}
+              </select>
+            </div>
             <m.div
               variants={fadeUpDelayed}
               initial="hidden"
