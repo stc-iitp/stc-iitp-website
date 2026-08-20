@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 const CLUBS: { id: number; name: string; logo: string }[] = [
@@ -64,16 +65,21 @@ export default function StudentClubsSection() {
 
       <div className="relative w-full h-px bg-slate-700 mb-10" />
 
-      <div
-        className="relative w-full overflow-hidden"
-        onMouseEnter={() => { pausedRef.current = true; }}
-        onMouseLeave={() => { pausedRef.current = false; }}
-      >
+      <div className="relative w-full overflow-hidden">
         <div ref={trackRef} className="flex items-start gap-10 will-change-transform w-max">
           {DOUBLED.map((club, i) => (
             <ClubCard key={`${club.id}-${i}`} club={club} />
           ))}
         </div>
+      </div>
+
+      <div className="flex justify-center mt-12">
+        <Link
+          href="/clubs"
+          className="inline-flex items-center gap-3 border border-slate-500 px-8 py-4 text-xs font-semibold tracking-[0.25em] text-slate-300 transition-all duration-200 hover:border-slate-300 hover:text-white active:scale-95 font-['Space_Mono',monospace]"
+        >
+          SEE MORE →
+        </Link>
       </div>
     </section>
   );
@@ -87,7 +93,9 @@ function ClubCard({ club }: ClubCardProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div
+    <Link
+      href="/clubs"
+      aria-label={`View ${club.name} on the clubs page`}
       className="flex flex-col items-center gap-5 group w-[160px] shrink-0"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -109,6 +117,6 @@ function ClubCard({ club }: ClubCardProps) {
       <p className="text-xs font-semibold tracking-[0.3em] text-slate-300 transition-colors duration-200 group-hover:text-white text-center font-['Space_Mono',monospace]">
         {club.name}
       </p>
-    </div>
+    </Link>
   );
 }
