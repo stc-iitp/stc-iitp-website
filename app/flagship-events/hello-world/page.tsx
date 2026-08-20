@@ -73,12 +73,20 @@ export default function HelloWorldPage() {
               About
             </h2>
             <p className="text-[#94a3b8] text-[16px] md:text-[18px] leading-[1.8] md:leading-[2] text-justify font-light">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.
+              Hello World is the Student Technical Council's welcome to every
+              incoming batch at IIT Patna. Over three days, each technical club
+              on campus takes the stage to introduce what it does, the projects
+              it runs and the competitions it enters, so that first year
+              students can see the full breadth of technical life here before
+              deciding where they want to spend their time.
+
+              Sessions run back to back across all clubs, from robotics and
+              coding to finance, design and astronomy, and close with the
+              Celesta exhibition. Freshers earn points for participating through
+              the event, and the leaderboard below records who finished on top.
+              For most students it is the first thing they do with STC, and for
+              many it is where they find the club they stay with for the next
+              four years.
             </p>
           </m.section>
 
