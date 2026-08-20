@@ -41,7 +41,6 @@ const Slideshow = ({ images }: SlideshowProps) => {
             fill
             sizes="65vw"
             priority={idx === 0}
-            loading={idx === 0 ? undefined : "eager"}
             className={`object-cover transition-opacity duration-700 ${
               idx === currentIdx ? "opacity-100" : "opacity-0"
             }`}

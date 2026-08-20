@@ -46,7 +46,7 @@ const PhotosSection = () => {
                 fill
                 sizes="(max-width: 1024px) 45vw, 15vw"
                 className="object-cover"
-                priority
+                priority={i === 0}
               />
             </div>
           ))}
