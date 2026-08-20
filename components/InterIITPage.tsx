@@ -67,6 +67,32 @@ const performancesByYear: Record<string, Performance[]> = {
   ]
 };
 
+// Inter IIT Tech Meet edition number for each hosting year.
+const editionByYear: Record<string, string> = {
+  "2025": "14.0",
+  "2024": "13.0",
+  "2023": "12.0",
+};
+
+const editionLabel = (year: string) =>
+  editionByYear[year] ? `ED. ${editionByYear[year]} · ${year}` : year;
+
+interface OverallStanding {
+  year: string;
+  rank: number;
+  field: number;
+}
+
+// IIT Patna's overall standing at each Inter IIT Tech Meet, confirmed by STC.
+// These are the official final standings — do not re-derive them from raw
+// result sheets, which order teams by grand total and can disagree.
+// Ordered oldest to newest so the strip reads left to right as a timeline.
+const overallStandings: OverallStanding[] = [
+  { year: "2023", rank: 8, field: 23 },
+  { year: "2024", rank: 12, field: 23 },
+  { year: "2025", rank: 9, field: 23 },
+];
+
 const visualArchiveImages = [
   "/interiit/interiit-1.jpeg",
   "/interiit/interiit-2.jpeg",
@@ -120,7 +146,94 @@ const archiveItemVariants: Variants = {
   visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: customEase } },
 };
 
+const standingCellVariants: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: customEase } },
+};
+
 // ── Sub-components ─────────────────────────────────────────────────────────
+function StandingCell({
+  standing,
+  previous,
+  isLatest,
+}: {
+  standing: OverallStanding;
+  previous?: OverallStanding;
+  isLatest: boolean;
+}) {
+  // A lower rank number is a better placing, so an improvement is the drop
+  // from the previous edition's rank to this one's.
+  const delta = previous ? previous.rank - standing.rank : 0;
+  const improved = delta > 0;
+  // Better placings fill more of the bar.
+  const fill = ((standing.field - standing.rank + 1) / standing.field) * 100;
+
+  return (
+    <m.div
+      variants={standingCellVariants}
+      className="flex flex-col gap-4 border-t border-white/10 pt-6 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-6 first:border-t-0 first:pt-0 sm:first:border-l-0 sm:first:pl-0"
+    >
+      <div className="flex items-center justify-between gap-3">
+        <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-[#94A3B8]">
+          {editionLabel(standing.year)}
+        </p>
+        {isLatest ? (
+          <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-[#21ED58] whitespace-nowrap">
+            ● Active
+          </span>
+        ) : (
+          <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-white/25 whitespace-nowrap">
+            Archived
+          </span>
+        )}
+      </div>
+
+      <div className="flex items-baseline gap-2">
+        <span
+          className={`text-5xl md:text-6xl font-bold leading-none tracking-tight tabular-nums ${
+            isLatest ? "text-[#21ED58]" : "text-white/70"
+          }`}
+        >
+          {String(standing.rank).padStart(2, "0")}
+        </span>
+        <span className="font-mono text-[12px] text-white/40 tabular-nums">
+          /{standing.field}
+        </span>
+
+        {previous && (
+          <span
+            className={`ml-auto font-mono text-[11px] tracking-[0.1em] whitespace-nowrap ${
+              improved ? "text-[#21ED58]" : "text-[#F87171]"
+            }`}
+          >
+            <span aria-hidden="true">
+              {improved ? "▲" : "▼"}
+              {Math.abs(delta)}
+            </span>
+            <span className="sr-only">
+              {improved ? "Up" : "Down"} {Math.abs(delta)}{" "}
+              {Math.abs(delta) === 1 ? "place" : "places"} from the previous
+              edition
+            </span>
+          </span>
+        )}
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="h-[3px] w-full bg-white/10 overflow-hidden"
+      >
+        <div
+          className={`h-full transition-[width] duration-700 ease-out motion-reduce:transition-none ${
+            isLatest ? "bg-[#21ED58]" : "bg-white/30"
+          }`}
+          style={{ width: `${fill}%` }}
+        />
+      </div>
+    </m.div>
+  );
+}
+
 function ArchiveImage({
   src,
   alt,
@@ -377,6 +490,41 @@ export default function InterIITPage() {
           </div>
         </m.section>
 
+        {/* ── Overall Standing ──────────────────────────────────────── */}
+        <m.section
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="w-full px-6 sm:px-10 md:px-16 py-12 md:py-16 border-b border-[#5EAF73]/20"
+        >
+          <div className="mb-8 border-b border-white/10 pb-6">
+            <p className="font-mono text-[9px] tracking-[0.25em] text-[#21ED58]/80 uppercase mb-2">
+              Institutional Rank / All Editions
+            </p>
+            <h2 className="text-xl md:text-2xl font-bold tracking-wide uppercase text-white">
+              Overall Standing
+            </h2>
+          </div>
+
+          <m.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-30px" }}
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8"
+          >
+            {overallStandings.map((standing, i) => (
+              <StandingCell
+                key={standing.year}
+                standing={standing}
+                previous={i > 0 ? overallStandings[i - 1] : undefined}
+                isLatest={i === overallStandings.length - 1}
+              />
+            ))}
+          </m.div>
+        </m.section>
+
         {/* ── Performance Table ─────────────────────────────────────── */}
         <section id="archive" className="w-full px-6 sm:px-10 md:px-16 py-16 lg:pb-20">
           <m.div
@@ -400,7 +548,7 @@ export default function InterIITPage() {
                 onClick={() => setIsYearDropdownOpen(!isYearDropdownOpen)}
                 className="cursor-pointer flex items-center justify-between sm:justify-start w-full sm:w-auto gap-3 border border-[#21ED58] px-4 py-2 font-mono text-xs tracking-[0.15em] text-[#21ED58] hover:bg-[#21ED58]/10 transition-all duration-200"
               >
-                YEAR {selectedYear}
+                {editionLabel(selectedYear)}
                 <svg
                   className={`w-3 h-3 transition-transform duration-200 ${isYearDropdownOpen ? "rotate-180" : ""}`}
                   fill="none"
@@ -423,7 +571,7 @@ export default function InterIITPage() {
                       className={`cursor-pointer block w-full text-left px-4 py-2 font-mono text-xs tracking-[0.15em] transition-colors duration-150
                         ${yr === selectedYear ? "text-[#21ED58] bg-[#21ED58]/10" : "text-white/50 hover:text-white hover:bg-white/5"}`}
                     >
-                      {yr}
+                      {editionLabel(yr)}
                     </button>
                   ))}
                 </div>

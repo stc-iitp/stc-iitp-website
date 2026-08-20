@@ -47,6 +47,8 @@ const HeroSection = () => {
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/HERO/hero-poster.webp"
       >
         <source src="/HERO/hero_vide.mp4" type="video/mp4" />
       </video>

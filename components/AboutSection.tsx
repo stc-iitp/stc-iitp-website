@@ -17,8 +17,8 @@ const cards = [
 
 const AboutSection = () => {
   return (
-    <section className="w-full pt-16 pb-24 md:pt-20 md:pb-32 flex flex-col items-center">
-      <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+    <section className="w-full pt-14 pb-16 md:pt-16 md:pb-20 flex flex-col items-center">
+      <div className="flex flex-col items-center text-center mb-12 md:mb-14">
         <h2 className="text-white font-black text-5xl md:text-6xl uppercase tracking-tighter font-['Space_Grotesk',sans-serif]">
           About Us
         </h2>
