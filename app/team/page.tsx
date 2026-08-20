@@ -28,6 +28,7 @@ interface TeamMember {
   image: string;
   linkedin?: string;
   github?: string;
+  instagram?: string;
   twitter?: string;
   objectFit?: "cover" | "contain";
   objectPosition?: string;
@@ -224,18 +225,21 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
         role: "General Secretary, Technical Affairs",
         image: "/team/2026-27/Abhitesh_Shukla_-_General_Secretary_Technical_Affairs.webp",
         linkedin: "https://www.linkedin.com/in/abhitesh-shukla-bb8053294/",
+        instagram: "https://www.instagram.com/abhitesh_gargvanshi",
       },
       {
         name: "Shaswat Suman",
         role: "Technical Secretary, Senior Year",
         image: "/team/2026-27/Shaswat_Suman_-_Technical_Secretary_Senior_Year.webp",
         linkedin: "https://www.linkedin.com/in/shaswat-suman-7041a82a0/",
+        instagram: "https://www.instagram.com/suman.shaswat",
       },
       {
         name: "Ashutosh Kumar",
         role: "Technical Secretary, Sophomore Year",
         image: "/team/2026-27/Ashutosh_Kumar_-_Technical_Secretary_Sophomore_Year.webp",
         linkedin: "https://www.linkedin.com/in/ashutosh-kumar1010/",
+        instagram: "https://www.instagram.com/_.umanggg.___",
       },
     ],
   },
@@ -401,6 +405,11 @@ function TeamCard({ member }: { member: TeamMember }) {
           {member.linkedin && (
             <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#6BFB9A] hover:text-[#1A2238] transition-all duration-300">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
+            </Link>
+          )}
+          {member.instagram && (
+            <Link href={member.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} on Instagram`} className="p-2 bg-white/5 rounded-full hover:bg-[#6BFB9A] hover:text-[#1A2238] transition-all duration-300">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fillRule="evenodd" clipRule="evenodd" d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 011.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772 4.915 4.915 0 01-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z" /></svg>
             </Link>
           )}
           {member.github && (
