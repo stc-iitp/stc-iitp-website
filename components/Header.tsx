@@ -16,6 +16,7 @@ export default function Header() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  const [isDesktopDropdownOpen, setIsDesktopDropdownOpen] = useState(false);
   const path01Controls = useAnimation();
   const path02Controls = useAnimation();
   const headerRef = useRef<HTMLElement>(null);
@@ -135,6 +136,9 @@ export default function Header() {
 
               <li className="relative group">
                 <button
+                  onClick={() => setIsDesktopDropdownOpen(!isDesktopDropdownOpen)}
+                  aria-expanded={isDesktopDropdownOpen}
+                  aria-haspopup="true"
                   className={`cursor-pointer relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
                 >
                   <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
@@ -144,7 +148,7 @@ export default function Header() {
                     className={`absolute bottom-0 left-0 h-0.5 bg-[#6BFB9A] transition-all duration-300 w-0 ${isFlagshipActive ? "" : "group-hover:w-full"}`}
                   ></span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 bg-[#00051A] shadow-lg rounded-md py-3 px-6 z-60 min-w-[180px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                <div className={`absolute top-full left-0 mt-2 bg-[#00051A] shadow-lg rounded-md py-3 px-6 z-60 min-w-[180px] transition-all duration-300 group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible ${isDesktopDropdownOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}>
                   <Link
                     href="/flagship-events/summer-sprint"
                     className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 py-2 text-[16px]"
@@ -271,14 +275,14 @@ export default function Header() {
           `}
         >
           <ul
-            className="flex flex-col gap-6 text-[21px] font-normal font-['Space_Grotesk'] leading-[12px] tracking-[-0.7px] uppercase"
+            className="flex flex-col gap-1 text-[21px] font-normal font-['Space_Grotesk'] leading-normal tracking-[-0.7px] uppercase"
             style={{ leadingTrim: "none" } as any}
           >
-            <li className="relative group w-max">
+            <li className="relative group w-full">
               <Link
                 href="/"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+                className={`relative flex items-center min-h-[44px] w-full transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
               >
                 <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                   HOME
@@ -293,7 +297,9 @@ export default function Header() {
               <div className="w-max">
                 <button
                   onClick={() => setIsMobileDropdownOpen(!isMobileDropdownOpen)}
-                  className={`cursor-pointer relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+                  aria-expanded={isMobileDropdownOpen}
+                  aria-haspopup="true"
+                  className={`cursor-pointer relative flex items-center min-h-[44px] w-full transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${isFlagshipActive ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
                 >
                   <span className="inline-flex items-center gap-2 transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                     FLAGSHIP EVENTS
@@ -321,29 +327,29 @@ export default function Header() {
               <div
                 className={`overflow-hidden transition-all duration-300 ease-in-out ${
                   isMobileDropdownOpen
-                    ? "max-h-40 opacity-100 mt-4"
+                    ? "max-h-64 opacity-100 mt-2"
                     : "max-h-0 opacity-0 mt-0"
                 }`}
               >
-                <div className="flex flex-col pl-4 space-y-4 border-l-2 border-gray-700 py-2">
+                <div className="flex flex-col pl-4 border-l-2 border-gray-700 py-2">
                   <Link
                     href="/flagship-events/summer-sprint"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
+                    className="flex items-center min-h-[44px] text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
                   >
                     SUMMER SPRINT
                   </Link>
                   <Link
                     href="/flagship-events/hello-world"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
+                    className="flex items-center min-h-[44px] text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
                   >
                     HELLO WORLD
                   </Link>
                   <Link
                     href="/flagship-events/ictc"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
+                    className="flex items-center min-h-[44px] text-[#94A3B8] hover:text-[#6BFB9A] transition-colors duration-200 text-[18px]"
                   >
                     ICTC
                   </Link>
@@ -351,11 +357,11 @@ export default function Header() {
               </div>
             </li>
 
-            <li className="relative group w-max">
+            <li className="relative group w-full">
               <Link
                 href="/inter-iit"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/inter-iit" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+                className={`relative flex items-center min-h-[44px] w-full transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/inter-iit" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
               >
                 <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                   INTER IIT
@@ -366,11 +372,11 @@ export default function Header() {
               </Link>
             </li>
 
-            <li className="relative group w-max">
+            <li className="relative group w-full">
               <Link
                 href="/clubs"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/clubs" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+                className={`relative flex items-center min-h-[44px] w-full transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/clubs" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
               >
                 <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                   CLUBS
@@ -381,11 +387,11 @@ export default function Header() {
               </Link>
             </li>
 
-            <li className="relative group w-max">
+            <li className="relative group w-full">
               <Link
                 href="/team"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`relative block py-1 before:absolute before:-inset-4 before:content-[''] transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/team" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
+                className={`relative flex items-center min-h-[44px] w-full transition-colors duration-300 ease-in-out group-hover:text-[#6BFB9A] ${pathname === "/team" ? "text-[#6BFB9A]" : "text-[#94A3B8]"}`}
               >
                 <span className="inline-block transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1 relative z-10">
                   TEAM
