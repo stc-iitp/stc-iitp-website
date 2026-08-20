@@ -3,23 +3,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
-const CLUBS: { id: number; name: string; logo: string }[] = [
-  { id: 1,  name: "E-Cell",                          logo: "/clubs/ecell-logo.png" },
-  { id: 2,  name: "NJack",                           logo: "/clubs/njack-logo.png" },
-  { id: 3,  name: "Finance Club",                    logo: "/clubs/finance-logo.png" },
-  { id: 4,  name: "Team Phoenix",                    logo: "/clubs/phonix-logo.png" },
-  { id: 5,  name: "MoodBoard",                       logo: "/clubs/moodboard-logo.png" },
-  { id: 6,  name: "Tinkerers' Lab",                  logo: "/clubs/tinklarer-logo.png" },
-  { id: 7,  name: "Rocketry And Aviation",           logo: "/clubs/rnaa-logo.png" },
-  { id: 8,  name: "Quantum Technology Club",         logo: "/clubs/qtc-logo.png" },
-  { id: 9, name: "Sparkonics",                      logo: "/clubs/sparconics-logo.png" },
-  { id: 10, name: "Astronomy And Particle Physics Club", logo: "/clubs/appc-logo.png" },
-  { id: 11, name: "ChESSx",                          logo: "/clubs/chessx-logo.png" },
-  { id: 12, name: "ACE",                             logo: "/clubs/ace-logo.png" },
-  { id: 13, name: "MaTES",                           logo: "/clubs/mate-logo.png" },
-  { id: 14, name: "SCME",                            logo: "/clubs/scmee-logo.png" },
-  { id: 15, name: "Optimatx",                        logo: "/clubs/optimax-logo.png" },
-  { id: 16, name: "Do Well, Do Good",                logo: "/clubs/dwdg-logo.png" },
+// slug matches the club id in app/clubs/data/clubs.ts so each logo can link
+// straight to that club's card rather than the top of the page.
+const CLUBS: { id: number; name: string; slug: string; logo: string }[] = [
+  { id: 1,  name: "E-Cell",                         slug: "ecell", logo: "/clubs/ecell-logo.png" },
+  { id: 2,  name: "NJack",                          slug: "njack", logo: "/clubs/njack-logo.png" },
+  { id: 3,  name: "Finance Club",                   slug: "finance", logo: "/clubs/finance-logo.png" },
+  { id: 4,  name: "Team Phoenix",                   slug: "phoenix", logo: "/clubs/phonix-logo.png" },
+  { id: 5,  name: "MoodBoard",                      slug: "moodboard", logo: "/clubs/moodboard-logo.png" },
+  { id: 6,  name: "Tinkerers' Lab",                 slug: "tinkerers-lab", logo: "/clubs/tinklarer-logo.png" },
+  { id: 7,  name: "Rocketry And Aviation",          slug: "rocketry", logo: "/clubs/rnaa-logo.png" },
+  { id: 8,  name: "Quantum Technology Club",        slug: "quantum", logo: "/clubs/qtc-logo.png" },
+  { id: 9, name: "Sparkonics",                     slug: "sparkonics", logo: "/clubs/sparconics-logo.png" },
+  { id: 10, name: "Astronomy And Particle Physics Club",slug: "astronomy-club", logo: "/clubs/appc-logo.png" },
+  { id: 11, name: "ChESSx",                         slug: "chessx", logo: "/clubs/chessx-logo.png" },
+  { id: 12, name: "ACE",                            slug: "ace", logo: "/clubs/ace-logo.png" },
+  { id: 13, name: "MaTES",                          slug: "mates", logo: "/clubs/mate-logo.png" },
+  { id: 14, name: "SCME",                           slug: "scme", logo: "/clubs/scmee-logo.png" },
+  { id: 15, name: "Optimatx",                       slug: "optimatx", logo: "/clubs/optimax-logo.png" },
+  { id: 16, name: "Do Well, Do Good",               slug: "dwdg", logo: "/clubs/dwdg-logo.png" },
 ];
 
 const DOUBLED = [...CLUBS, ...CLUBS];
@@ -82,7 +84,7 @@ export default function StudentClubsSection() {
 }
 
 interface ClubCardProps {
-  club: { id: number; name: string; logo: string };
+  club: { id: number; name: string; slug: string; logo: string };
 }
 
 function ClubCard({ club }: ClubCardProps) {
@@ -90,7 +92,7 @@ function ClubCard({ club }: ClubCardProps) {
 
   return (
     <Link
-      href="/clubs"
+      href={`/clubs#${club.slug}`}
       aria-label={`View ${club.name} on the clubs page`}
       className="flex flex-col items-center gap-5 group w-[160px] shrink-0"
       onMouseEnter={() => setHovered(true)}

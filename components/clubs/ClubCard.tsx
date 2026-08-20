@@ -57,7 +57,8 @@ export default function ClubCard({ club, index, expanded, onToggle }: ClubCardPr
   return (
     <>
       <article
-        className={`group relative flex flex-col sm:flex-row ${
+        id={club.id}
+        className={`scroll-mt-28 group relative flex flex-col sm:flex-row ${
           isEven ? "sm:flex-row" : "sm:flex-row-reverse"
         } gap-5 sm:gap-8 md:gap-10 items-center sm:items-start bg-gradient-to-br from-[#123498]/80 to-[#0a0f2e]/80 border border-blue-500/15 rounded-2xl p-5 sm:p-6 md:p-8 transition-all duration-500 hover:shadow-[0_0_40px_rgba(59,130,246,0.08)]`}
       >

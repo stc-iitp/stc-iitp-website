@@ -18,6 +18,17 @@ export default function ClubList({ clubs }: ClubListProps) {
     return () => clearTimeout(timer);
   }, []);
 
+  // Arriving at /clubs#some-club, the browser looks for the anchor before the
+  // skeleton has been replaced by real cards and finds nothing, so the jump is
+  // lost. Scroll once the list is actually on the page.
+  useEffect(() => {
+    if (loading) return;
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [loading]);
+
   if (loading) {
     return (
       <div className="flex flex-col gap-6">
