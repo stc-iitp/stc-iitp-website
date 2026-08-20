@@ -51,7 +51,7 @@ export default function StudentClubsSection() {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center px-4 md:px-16 py-12 md:py-20 overflow-hidden">
+    <section className="relative w-full flex flex-col justify-center px-4 md:px-16 py-14 md:py-16 overflow-hidden">
       <div className="relative flex flex-col sm:flex-row items-center sm:items-end justify-between mb-8 gap-4">
         <h2 className="text-4xl md:text-6xl font-black uppercase text-white leading-none tracking-tight text-center sm:text-left font-['Barlow_Condensed',sans-serif]">
           STUDENT CLUBS
@@ -62,7 +62,7 @@ export default function StudentClubsSection() {
         </a>
       </div>
 
-      <div className="relative w-full h-px bg-slate-700 mb-16" />
+      <div className="relative w-full h-px bg-slate-700 mb-10" />
 
       <div
         className="relative w-full overflow-hidden"
