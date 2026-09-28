@@ -234,6 +234,14 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
         linkedin: "https://www.linkedin.com/in/shaswat-suman-7041a82a0/",
         instagram: "https://www.instagram.com/suman.shaswat",
       },
+      
+      {
+        name: "Kanishk Desai",
+        role: "Technical Secretary, Junior year",
+        image: "/team/2026-27/kanishka_junior_year.jpeg",
+        linkedin: "https://www.linkedin.com/in/kanishk-desai-54a88031a/",
+        instagram: "https://www.instagram.com/kanishkravidesai/",
+      },
       {
         name: "Ashutosh Kumar",
         role: "Technical Secretary, Sophomore Year",
@@ -248,6 +256,14 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
         linkedin: "https://www.linkedin.com/in/dhriti-singh-61761440b/",
         instagram: "https://www.instagram.com/dhritiii_/",
       },
+       {
+        name: "Avni Shukla",
+        role: "Technical Secretary, Girls",
+        image: "/team/2026-27/Avni_shukla_Girls_Sec.jpeg",
+        linkedin: "https://www.linkedin.com/in/avni-shukla-8921b5324/",
+        instagram: "https://www.instagram.com/3vni.shukla/",
+      },
+      
     ],
   },
 };
