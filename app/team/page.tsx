@@ -237,7 +237,7 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
       {
         name: "Ashutosh Kumar",
         role: "Technical Secretary, Sophomore Year",
-        image: "public/team/2026-27/Ashutosh_Kumar-sophomore-year.jpeg",
+        image: "/team/2026-27/Ashutosh_Kumar-sophomore-year.jpeg",
         linkedin: "https://www.linkedin.com/in/ashutosh-kumar1010/",
         instagram: "https://www.instagram.com/_.umanggg.___",
       },
