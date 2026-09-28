@@ -241,6 +241,13 @@ const ALL_TEAM_DATA: Record<string, { faculty: TeamMember[]; students: TeamMembe
         linkedin: "https://www.linkedin.com/in/ashutosh-kumar1010/",
         instagram: "https://www.instagram.com/_.umanggg.___",
       },
+      {
+        name: "Dhriti Singh",
+        role: "Technical Secretary, UG Girls",
+        image: "/team/2026-27/Dhriti_singh_ug girls.jpeg",
+        linkedin: "https://www.linkedin.com/in/ashutosh-kumar1010/",
+        instagram: "https://www.instagram.com/_.umanggg.___",
+      },
     ],
   },
 };
